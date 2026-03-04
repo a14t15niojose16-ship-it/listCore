@@ -24,7 +24,7 @@ jobs:
       run: ant extensions
 
     - name: Upload AIX
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: listCore-extension
         path: build/dist/*.aix
