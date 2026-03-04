@@ -1,0 +1,30 @@
+name: Build listCore AIX
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '8'
+
+    - name: Install Ant
+      run: sudo apt-get install ant -y
+
+    - name: Build extension
+      run: ant extensions
+
+    - name: Upload AIX
+      uses: actions/upload-artifact@v3
+      with:
+        name: listCore-extension
+        path: build/dist/*.aix
